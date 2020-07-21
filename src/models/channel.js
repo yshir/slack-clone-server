@@ -38,6 +38,11 @@ module.exports = (sequelize, DataTypes) => {
       as: 'messages',
       foreignKey: 'channel_id',
     });
+    Channel.belongsToMany(models.User, {
+      as: 'users',
+      through: 'ChannelUser',
+      foreignKey: 'channel_id'
+    });
   };
   return Channel;
 };

@@ -61,6 +61,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
   User.associate = function (models) {
+    User.belongsToMany(models.Channel, {
+      as: 'channels',
+      through: 'ChannelUser',
+      foreignKey: 'user_id'
+    });
     User.belongsTo(models.Workspace, {
       as: 'workspace',
       foreignKey: 'workspace_id',
