@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     Workspace.hasMany(models.Channel, {
       as: 'channels',
       foreignKey: 'workspace_id',
-    });
+    })
   }
   return Workspace
 }

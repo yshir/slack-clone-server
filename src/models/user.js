@@ -1,9 +1,10 @@
-'use strict';
+'use strict'
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt')
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User',
+  const User = sequelize.define(
+    'User',
     {
       id: {
         type: DataTypes.UUID,
@@ -31,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notEmpty: true,
-        }
+        },
       },
       displayname: {
         type: DataTypes.STRING,
@@ -59,37 +60,38 @@ module.exports = (sequelize, DataTypes) => {
         beforeUpdate: beforeSave,
       },
     },
-  );
+  )
   User.associate = function (models) {
     User.belongsToMany(models.Channel, {
       as: 'channels',
       through: 'ChannelUser',
-      foreignKey: 'user_id'
-    });
+      foreignKey: 'user_id',
+    })
     User.belongsTo(models.Workspace, {
       as: 'workspace',
       foreignKey: 'workspace_id',
-    });
+    })
     User.hasMany(models.Message, {
       as: 'messages',
       foreignKey: 'user_id',
-    });
-  };
-  User.prototype.isValidPassword = password => {
-    return bcrypt.compareSync(password, this.password);
+    })
   }
-  return User;
-};
+  User.prototype.isValidPassword = (password) => {
+    return bcrypt.compareSync(password, this.password)
+  }
+  return User
+}
 
 const beforeSave = (user, options) => {
   if (user.password === undefined) return
   if (user.password === user.previous('password')) return
 
-  return bcrypt.hash(user.password, 10)
-    .then(hash => {
-      user.password = hash;
+  return bcrypt
+    .hash(user.password, 10)
+    .then((hash) => {
+      user.password = hash
     })
-    .catch(err => {
-      throw err;
-    });
-};
+    .catch((err) => {
+      throw err
+    })
+}
