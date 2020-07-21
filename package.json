@@ -5,7 +5,16 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/app.js",
-    "seed:dev": "sequelize db:seed:undo:all --seeders-path src/db/seeders/development && sequelize db:seed:all --seeders-path src/db/seeders/development"
+    "seed:dev": "sequelize db:seed:undo:all --seeders-path src/db/seeders/development && sequelize db:seed:all --seeders-path src/db/seeders/development",
+    "test": "export NODE_ENV=test; npm run db:setup && jest --forceExit && npm run db:drop",
+    "db:setup": "sequelize db:create && sequelize db:migrate",
+    "db:drop": "sequelize db:drop"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)"
+    ]
   },
   "author": "yshir",
   "license": "MIT",
@@ -26,6 +35,7 @@
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.1.0",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5"
   }
