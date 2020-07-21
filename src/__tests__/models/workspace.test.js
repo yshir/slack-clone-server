@@ -4,6 +4,10 @@ const params = {
   name: 'NAME',
 }
 
+afterAll(async () => {
+  await models.Workspace.destroy({ truncate: { cascade: true } })
+})
+
 describe('Parameter Test', () => {
   describe('name is null', () => {
     it('can not create workspace', async () => {
@@ -17,7 +21,7 @@ describe('Parameter Test', () => {
     })
   })
 
-  describe('name is present', () => {
+  describe('valid parameters', () => {
     it('creates workspace', async () => {
       const workspace = await models.Workspace.create({ ...params, name: 'NAME' })
       expect(workspace.id).not.toBeUndefined()

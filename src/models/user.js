@@ -76,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'user_id',
     })
   }
-  User.prototype.isValidPassword = (password) => {
+  User.prototype.isValidPassword = function (password) {
     return bcrypt.compareSync(password, this.password)
   }
   return User
