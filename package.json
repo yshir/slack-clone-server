@@ -1,7 +1,7 @@
 {
   "name": "slack-clone-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "slack clone with node.js",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/app.js",
