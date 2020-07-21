@@ -15,7 +15,6 @@ module.exports = {
         username: {
           allowNull: false,
           type: Sequelize.STRING,
-          unique: true,
         },
         password: {
           allowNull: false,
@@ -48,10 +47,16 @@ module.exports = {
         },
         onDelete: 'cascade',
       }),
+      await queryInterface.addIndex('users', {
+        fields: ['workspace_id', 'username'],
+        name: 'users_workspace_id_and_username_unique',
+        unique: true,
+      })
     ]
   },
   down: async (queryInterface, Sequelize) => {
     return [
+      await queryInterface.removeIndex('users', 'users_workspace_id_and_username_unique'),
       await queryInterface.removeConstraint('users', 'users_workspace_id_workspaces_fk'),
       await queryInterface.dropTable('users'),
     ]
