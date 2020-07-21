@@ -1,6 +1,6 @@
 'use strict'
 
-const { users } = require('../seed_data.json')
+const { users } = require('./seed_data.json')
 
 module.exports = {
   up: (queryInterface, Sequelize) => {

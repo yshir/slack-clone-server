@@ -1,6 +1,6 @@
 'use strict'
 
-const { channels } = require('../seed_data.json')
+const { channels } = require('./seed_data.json')
 
 module.exports = {
   up: (queryInterface, Sequelize) => {

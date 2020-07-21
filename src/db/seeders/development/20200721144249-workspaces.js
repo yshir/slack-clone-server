@@ -1,6 +1,6 @@
 'use strict'
 
-const { workspaces } = require('../seed_data.json')
+const { workspaces } = require('./seed_data.json')
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
