@@ -13,7 +13,7 @@ services:
       - db
   db:
     container_name: slack-clone-postgres
-    image: postgres:13-alpine
+    image: postgres:11.5
     volumes:
       - ./data/:/var/lib/postgresql/data/
     ports:
@@ -23,6 +23,7 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
       POSTGRES_DB: slack_clone_local
+      TZ: Asia/Tokyo
     hostname: postgres
     restart: always
     user: root
