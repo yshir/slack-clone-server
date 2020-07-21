@@ -1,0 +1,98 @@
+{
+  "workspaces": [{
+    "id": "ef03935f-3291-4c1a-b015-ff199e83e307",
+    "name": "workspace_1",
+    "created_at": "2020-07-21T13:53:54+0900",
+    "updated_at": "2020-07-21T13:53:54+0900"
+  }],
+  "channels": [{
+      "id": "7b6c90c4-ddc2-42cb-abf1-6cf12ec86c6c",
+      "workspace_id": "ef03935f-3291-4c1a-b015-ff199e83e307",
+      "name": "channel_1_1",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    },
+    {
+      "id": "d3d82861-0a56-4e14-87a2-8b51592d5b33",
+      "workspace_id": "ef03935f-3291-4c1a-b015-ff199e83e307",
+      "name": "channel_1_2",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    }
+  ],
+  "users": [{
+      "id": "522a2d07-afeb-4a6b-8835-9c336d1eaf87",
+      "workspace_id": "ef03935f-3291-4c1a-b015-ff199e83e307",
+      "username": "user_1",
+      "password": "password",
+      "displayname": "displayname_1",
+      "avatar_url": "https://i.pravatar.cc/150?img=42",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    },
+    {
+      "id": "e56fd7df-df3e-4d25-8ea8-ab20fe140710",
+      "workspace_id": "ef03935f-3291-4c1a-b015-ff199e83e307",
+      "username": "user_2",
+      "password": "password",
+      "displayname": "displayname_2",
+      "avatar_url": "https://i.pravatar.cc/150?img=4",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    },
+    {
+      "id": "eea7fe3b-3b08-4afd-ad2e-d30dc005088a",
+      "workspace_id": "ef03935f-3291-4c1a-b015-ff199e83e307",
+      "username": "user_3",
+      "password": "password",
+      "displayname": "displayname_3",
+      "avatar_url": "https://i.pravatar.cc/150?img=14",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    }
+  ],
+  "channel_users": [{
+      "id": "6b53da32-5571-4702-9320-3c7fa34b70ed",
+      "channel_id": "7b6c90c4-ddc2-42cb-abf1-6cf12ec86c6c",
+      "user_id": "522a2d07-afeb-4a6b-8835-9c336d1eaf87",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    },
+    {
+      "id": "3ac3e9c8-5d4f-43bd-9eb0-645812e811a3",
+      "channel_id": "7b6c90c4-ddc2-42cb-abf1-6cf12ec86c6c",
+      "user_id": "e56fd7df-df3e-4d25-8ea8-ab20fe140710",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    },
+    {
+      "id": "eccc3e1e-2a85-429e-890b-728888245880",
+      "channel_id": "7b6c90c4-ddc2-42cb-abf1-6cf12ec86c6c",
+      "user_id": "eea7fe3b-3b08-4afd-ad2e-d30dc005088a",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    },
+    {
+      "id": "898c1092-d90b-4a3a-973a-ddc2f327af95",
+      "channel_id": "d3d82861-0a56-4e14-87a2-8b51592d5b33",
+      "user_id": "522a2d07-afeb-4a6b-8835-9c336d1eaf87",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    },
+    {
+      "id": "b2ef0b1e-4dca-4392-bc57-456dfbc2c923",
+      "channel_id": "d3d82861-0a56-4e14-87a2-8b51592d5b33",
+      "user_id": "e56fd7df-df3e-4d25-8ea8-ab20fe140710",
+      "created_at": "2020-07-21T13:53:54+0900",
+      "updated_at": "2020-07-21T13:53:54+0900"
+    }
+  ],
+  "messages": [{
+    "id": "ef438eea-80bb-48ab-ac33-34b5f8745ab8",
+    "channel_id": "7b6c90c4-ddc2-42cb-abf1-6cf12ec86c6c",
+    "user_id": "522a2d07-afeb-4a6b-8835-9c336d1eaf87",
+    "text": "hello",
+    "created_at": "2020-07-21T13:53:54+0900",
+    "updated_at": "2020-07-21T13:53:54+0900"
+  }]
+}
