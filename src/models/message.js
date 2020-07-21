@@ -37,7 +37,14 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: 'updated_at',
   });
   Message.associate = function (models) {
-    // associations can be defined here
+    Message.belongsTo(models.Channel, {
+      as: 'channel',
+      foreignKey: 'channel_id',
+    });
+    Message.belongsTo(models.User, {
+      as: 'user',
+      foreignKey: 'user_id',
+    });
   };
   return Message;
 };

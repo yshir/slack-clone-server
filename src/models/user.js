@@ -61,7 +61,14 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
   User.associate = function (models) {
-    // associations can be defined here
+    User.belongsTo(models.Workspace, {
+      as: 'workspace',
+      foreignKey: 'workspace_id',
+    });
+    User.hasMany(models.Message, {
+      as: 'messages',
+      foreignKey: 'user_id',
+    });
   };
   User.prototype.isValidPassword = password => {
     return bcrypt.compareSync(password, this.password);

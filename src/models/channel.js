@@ -30,7 +30,14 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: 'updated_at',
   });
   Channel.associate = function (models) {
-    // associations can be defined here
+    Channel.belongsTo(models.Workspace, {
+      as: 'workspace',
+      foreignKey: 'workspace_id',
+    });
+    Channel.hasMany(models.Message, {
+      as: 'messages',
+      foreignKey: 'channel_id',
+    });
   };
   return Channel;
 };
