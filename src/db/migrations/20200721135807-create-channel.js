@@ -45,7 +45,7 @@ module.exports = {
     return [
       await queryInterface.removeIndex('channels', 'channels_workspace_id_and_name_unique'),
       await queryInterface.removeConstraint('channels', 'channels_workspace_id_workspaces_fk'),
-      await queryInterface.dropTable('Channels'),
+      await queryInterface.dropTable('channels'),
     ]
   }
 };
