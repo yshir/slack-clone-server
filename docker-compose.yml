@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: slack-clone-node
+    command: npm run dev
+    ports:
+      - 3001:3001
+    volumes:
+      - ./:/usr/src/app
+    depends_on:
+      - db
+  db:
+    container_name: slack-clone-postgres
+    image: postgres:13-alpine
+    volumes:
+      - ./data/:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      POSTGRES_DB: slack_clone_local
+    hostname: postgres
+    restart: always
+    user: root
