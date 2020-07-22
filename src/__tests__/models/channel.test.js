@@ -1,3 +1,4 @@
+const utils = require('../utils')
 const models = require('../../models')
 
 const params = {
@@ -5,13 +6,13 @@ const params = {
 }
 
 beforeAll(async () => {
-  const workspace = await models.Workspace.create({ name: 'NAME' })
+  const workspace = await utils.createWorkspace()
   params.workspace_id = workspace.id
 })
 
 afterAll(async () => {
-  await models.Channel.destroy({ truncate: { cascade: true } })
-  await models.Workspace.destroy({ truncate: { cascade: true } })
+  await utils.truncateChannel()
+  await utils.truncateWorkspace()
 })
 
 describe('Parameter Test', () => {

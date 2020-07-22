@@ -1,12 +1,13 @@
 const models = require('../../models')
+const utils = require('../utils')
+
+afterAll(async () => {
+  await utils.truncateWorkspace()
+})
 
 const params = {
   name: 'NAME',
 }
-
-afterAll(async () => {
-  await models.Workspace.destroy({ truncate: { cascade: true } })
-})
 
 describe('Parameter Test', () => {
   describe('name is null', () => {

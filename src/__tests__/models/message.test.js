@@ -1,27 +1,27 @@
 const models = require('../../models')
+const utils = require('../utils')
 
 const params = {
   text: 'TEXT',
 }
 
 beforeAll(async () => {
-  const workspace = await models.Workspace.create({ name: 'NAME' })
+  const workspace = await utils.createWorkspace()
+  const channel = await utils.createChannel({ workspace_id: workspace.id })
+  const user = await utils.createUser({ workspace_id: workspace.id })
 
-  const channel = await models.Channel.create({ workspace_id: workspace.id, name: 'name' })
   params.channel_id = channel.id
-
-  const user = await models.User.create({ workspace_id: workspace.id, username: 'name', displayname: 'name', password: 'password' })
   params.user_id = user.id
 
-  await models.ChannelUser.create({ channel_id: channel.id, user_id: user.id })
+  await utils.createChannelUser({ channel_id: channel.id, user_id: user.id })
 })
 
 afterAll(async () => {
-  await models.Message.destroy({ truncate: { cascade: true } })
-  await models.ChannelUser.destroy({ truncate: { cascade: true } })
-  await models.Channel.destroy({ truncate: { cascade: true } })
-  await models.User.destroy({ truncate: { cascade: true } })
-  await models.Workspace.destroy({ truncate: { cascade: true } })
+  await utils.truncateMessage()
+  await utils.truncateChannelUser()
+  await utils.truncateChannel()
+  await utils.truncateUser()
+  await utils.truncateWorkspace()
 })
 
 describe('Parameter Test', () => {
