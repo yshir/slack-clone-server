@@ -4,7 +4,7 @@
   "description": "slack clone with node.js",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
+    "dev": "nodemon src/server.js",
     "seed:dev": "sequelize db:seed:undo:all --seeders-path src/db/seeders/development && sequelize db:seed:all --seeders-path src/db/seeders/development",
     "test": "export NODE_ENV=test; npm run db:drop && npm run db:setup && jest --detectOpenHandles --forceExit --verbose",
     "db:setup": "sequelize db:create && sequelize db:migrate",
@@ -13,7 +13,7 @@
   "jest": {
     "testEnvironment": "node",
     "testMatch": [
-      "**/__tests__/**/*.[jt]s?(x)"
+      "**/__tests__/**/*.test.[jt]s?(x)"
     ]
   },
   "author": "yshir",
@@ -37,6 +37,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "supertest": "^4.0.2"
   }
 }

@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm i && npm i -g nodemon
+RUN npm i -g nodemon sequelize-cli && npm i
 
 COPY . .
 

@@ -88,10 +88,10 @@ const beforeSave = (user, options) => {
 
   return bcrypt
     .hash(user.password, 10)
-    .then((hash) => {
+    .then(hash => {
       user.password = hash
     })
-    .catch((err) => {
+    .catch(err => {
       throw err
     })
 }

@@ -1,10 +1,8 @@
 const express = require('express')
 const useragent = require('express-useragent')
 const cookieParser = require('cookie-parser')
-const http = require('http')
 const logger = require('morgan')
 
-const config = require('./config')
 const errorHandler = require('./middlewares/error-handler')
 
 const app = express()
@@ -17,7 +15,4 @@ app.use(cookieParser())
 app.use('/v1', require('./routes/v1'))
 app.use(errorHandler)
 
-const server = http.createServer(app)
-server.listen(config.app.port, () => {
-  console.log(`> 🚀 server running: http://localhost:${config.app.port}`)
-})
+module.exports = app
