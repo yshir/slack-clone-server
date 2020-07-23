@@ -7,7 +7,7 @@ const serialize = require('../../presenters/workspaces')
 router.get('/', async (req, res, next) => {
   try {
     const workspaces = await models.Workspace.findAll()
-    res.json({ data: serialize(workspaces) })
+    res.json({ workspaces: serialize(workspaces) })
   } catch (err) {
     next(err)
   }
