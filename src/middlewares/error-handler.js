@@ -1,6 +1,10 @@
 const config = require('../config')
 
 module.exports = (err, req, res, next) => {
+  if (config.app.env === 'development') {
+    console.error(err)
+  }
+
   const ret = {
     name: err.name,
     status: err.status || 500,
@@ -10,7 +14,6 @@ module.exports = (err, req, res, next) => {
     const is5xxError = String(ret.status).startsWith('5')
     ret.message = is5xxError ? 'Internal server error occured' : err.message
   } else {
-    console.error(err)
     ret.message = err.message
     ret.stack = err.stack
   }

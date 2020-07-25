@@ -1,5 +1,5 @@
 module.exports = {
   cors: {
-    allowed: [/^http:\/\/localhost:\d+$/],
+    allowed: [/^http:\/\/localhost:\d+$/, /^chrome-extension:\/\/aejoelaoggembcahagimdiliamlcdmfm$/],
   },
 }
