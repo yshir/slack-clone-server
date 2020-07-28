@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
+const authHelper = require('../../helpers/auth')
 const models = require('../../models')
 const WorkspaceForm = require('../../forms/workspace-form')
 const workspaceRequest = require('../../middlewares/requests/workspace-request')
@@ -19,7 +20,9 @@ router.post('/', workspaceRequest, async (req, res, next) => {
     const form = new WorkspaceForm(req.body)
     await form.save()
     const { user, workspace } = form
-    res.json({ user, workspace })
+
+    const token = await authHelper.createTokenByUserId(user.id)
+    res.json({ token })
   } catch (err) {
     next(err)
   }

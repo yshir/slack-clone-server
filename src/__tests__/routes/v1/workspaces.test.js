@@ -37,6 +37,7 @@ describe('POST: /v1/workspaces', () => {
         })
         .then(res => {
           expect(res.statusCode).toBe(200)
+          expect(res.body).toHaveProperty('token')
           done()
         })
     })
