@@ -1,4 +1,5 @@
 const models = require('../../models')
+const authHelper = require('../../helpers/auth')
 
 const utils = {
   createWorkspace: async (params = {}) => {
@@ -48,6 +49,11 @@ const utils = {
   },
   truncateChannelUser: async () => {
     return await models.ChannelUser.destroy({ truncate: { cascade: true } })
+  },
+  getToken: async user => {
+    user = user || (await utils.createUser())
+    const token = await authHelper.createTokenByUserId(user.id)
+    return token
   },
 }
 
