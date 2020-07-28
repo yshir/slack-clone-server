@@ -34,7 +34,14 @@ module.exports = (sequelize, DataTypes) => {
     },
   )
   ChannelUser.associate = function (models) {
-    // associations can be defined here
+    ChannelUser.belongsTo(models.Channel, {
+      as: 'channel',
+      foreignKey: 'channel_id',
+    })
+    ChannelUser.belongsTo(models.User, {
+      as: 'user',
+      foreignKey: 'user_id',
+    })
   }
   return ChannelUser
 }

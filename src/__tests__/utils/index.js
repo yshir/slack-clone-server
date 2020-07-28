@@ -23,6 +23,8 @@ const utils = {
   },
   createMessage: async (params = {}) => {
     return await models.Message.create({
+      channel_id: params.channel_id !== undefined ? params.channel_id : (await utils.createChannel()).id,
+      user_id: params.user_id !== undefined ? params.user_id : (await utils.createUser()).id,
       text: params.text !== undefined ? params.text : 'TEXT',
     })
   },

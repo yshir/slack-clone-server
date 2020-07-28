@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       as: 'channels',
       foreignKey: 'workspace_id',
     })
+    Workspace.hasMany(models.User, {
+      as: 'users',
+      foreignKey: 'workspace_id',
+    })
   }
   return Workspace
 }

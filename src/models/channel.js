@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
       as: 'messages',
       foreignKey: 'channel_id',
     })
+    Channel.hasMany(models.ChannelUser, {
+      as: 'channel_user',
+      foreignKey: 'channel_id',
+    })
     Channel.belongsToMany(models.User, {
       as: 'users',
       through: 'ChannelUser',

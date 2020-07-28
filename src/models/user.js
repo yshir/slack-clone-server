@@ -71,6 +71,10 @@ module.exports = (sequelize, DataTypes) => {
       as: 'workspace',
       foreignKey: 'workspace_id',
     })
+    User.hasMany(models.ChannelUser, {
+      as: 'channel_user',
+      foreignKey: 'user_id',
+    })
     User.hasMany(models.Message, {
       as: 'messages',
       foreignKey: 'user_id',

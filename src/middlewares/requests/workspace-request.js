@@ -13,15 +13,18 @@ module.exports = (req, res, next) => {
     properties: {
       workspace_name: {
         type: Types.string,
+        minLength: 1,
         maxLength: 30,
       },
       username: {
         type: Types.string,
+        minLength: 1,
         maxLength: 30,
       },
       password: {
         type: Types.string,
         minLength: 6,
+        maxLength: 255,
       },
     },
     required: ['workspace_name', 'username', 'password'],
