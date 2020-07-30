@@ -19,9 +19,10 @@ router.post('/', workspaceRequest, async (req, res, next) => {
   try {
     const form = new WorkspaceForm(req.body)
     await form.save()
+    const { user, channels } = form
 
-    const token = await authHelper.createTokenByUserId(form.user.id)
-    res.json({ token })
+    const token = await authHelper.createTokenByUserId(user.id)
+    res.json({ token, default_channel: channels[0] })
   } catch (err) {
     next(err)
   }

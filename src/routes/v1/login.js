@@ -23,9 +23,10 @@ router.post('/', async (req, res, next) => {
     if (!user || !user.isValidPassword(password)) {
       return next(new UnauthorizedError('Invalid params'))
     }
+    const channels = await user.getChannels()
 
     const token = await authHelper.createTokenByUserId(user.id)
-    res.json({ token })
+    res.json({ token, default_channel: channels[0] })
   } catch (err) {
     next(err)
   }

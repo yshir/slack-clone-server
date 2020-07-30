@@ -38,6 +38,9 @@ describe('POST: /v1/workspaces', () => {
         .then(res => {
           expect(res.statusCode).toBe(200)
           expect(res.body).toHaveProperty('token')
+
+          expect(res.body).toHaveProperty('default_channel')
+          expect(res.body.default_channel).toHaveProperty('id')
           done()
         })
     })

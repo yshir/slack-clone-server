@@ -11,11 +11,13 @@ const params = {
 
 beforeAll(async () => {
   const workspace = await utils.createWorkspace({ name: params.workspace_name })
-  await utils.createUser({
+  const channel = await utils.createChannel({ workspace_id: workspace.id })
+  const user = await utils.createUser({
     workspace_id: workspace.id,
     username: params.username,
     password: params.password,
   })
+  await utils.createChannelUser({ channel_id: channel.id, user_id: user.id })
 })
 
 afterAll(async () => {
@@ -36,6 +38,8 @@ describe('POST: /v1/login', () => {
         .then(res => {
           expect(res.statusCode).toBe(200)
           expect(res.body).toHaveProperty('token')
+          expect(res.body).toHaveProperty('default_channel')
+          expect(res.body.default_channel).toHaveProperty('id')
           done()
         })
     })

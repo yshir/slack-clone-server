@@ -5,6 +5,7 @@ class WorkspaceForm {
     this.params = params
     this.workspace = null
     this.user = null
+    this.channels = null
   }
 
   async save() {
@@ -40,7 +41,8 @@ class WorkspaceForm {
   async _createDefaultChannels(t) {
     const generalChannel = await this.workspace.createChannel({ name: 'general' }, { transaction: t })
     const randomChannel = await this.workspace.createChannel({ name: 'random' }, { transaction: t })
-    this.user.setChannels([generalChannel, randomChannel])
+    this.channels = [generalChannel, randomChannel]
+    this.user.setChannels(this.channels)
   }
 }
 
