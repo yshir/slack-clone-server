@@ -84,6 +84,11 @@ router.post('/', messageRequest, async (req, res, next) => {
       message: {
         text: message.text,
         created_at: message.created_at,
+        user: {
+          username: req.user.username,
+          displayname: req.user.displayname,
+          avatar_url: req.user.avatar_url,
+        },
       },
     })
   } catch (err) {
