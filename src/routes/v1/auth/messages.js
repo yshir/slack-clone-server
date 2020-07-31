@@ -2,6 +2,7 @@ const _ = require('lodash')
 const express = require('express')
 const router = express.Router()
 
+const config = require('../../../config')
 const models = require('../../../models')
 const ValidationError = require('../../../lib/errors/validation-error')
 const messageRequest = require('../../../middlewares/requests/message-request')
@@ -80,7 +81,7 @@ router.post('/', messageRequest, async (req, res, next) => {
       text: text,
     })
 
-    res.json({
+    const response = {
       message: {
         text: message.text,
         created_at: message.created_at,
@@ -90,7 +91,9 @@ router.post('/', messageRequest, async (req, res, next) => {
           avatar_url: req.user.avatar_url,
         },
       },
-    })
+    }
+    req.app.io.emit(config.socket.events.update_message, response)
+    res.json(response)
   } catch (err) {
     next(err)
   }
