@@ -1,5 +1,5 @@
 module.exports = {
   cors: {
-    allowed: [],
+    allowed: [/^https:\/\/slack-clone-xyz.netlify.app$/],
   },
 }
