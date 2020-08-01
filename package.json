@@ -8,7 +8,8 @@
     "seed:dev": "sequelize db:seed:undo:all --seeders-path src/db/seeders/development && sequelize db:seed:all --seeders-path src/db/seeders/development",
     "test": "export NODE_ENV=test; npm run db:drop && npm run db:setup && jest --detectOpenHandles --forceExit",
     "db:setup": "sequelize db:create && sequelize db:migrate",
-    "db:drop": "sequelize db:drop"
+    "db:drop": "sequelize db:drop",
+    "db:migrate": "sequelize db:migrate"
   },
   "jest": {
     "testEnvironment": "node",
