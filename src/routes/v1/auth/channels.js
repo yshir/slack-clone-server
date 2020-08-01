@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 const models = require('../../../models')
+const channelRequest = require('../../../middlewares/requests/channel-request')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -18,6 +19,20 @@ router.get('/', async (req, res, next) => {
         is_joined: _.includes(joinedChannelIds, c.id),
       })),
     })
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/', channelRequest, async (req, res, next) => {
+  try {
+    const channel = await models.Channel.create({
+      workspace_id: req.user.workspace.id,
+      name: req.body.name,
+    })
+    await channel.setUsers([req.user.id])
+
+    res.json({ channel })
   } catch (err) {
     next(err)
   }

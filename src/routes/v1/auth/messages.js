@@ -92,7 +92,9 @@ router.post('/', messageRequest, async (req, res, next) => {
         },
       },
     }
-    req.app.io.emit(config.socket.events.update_message, response)
+    if (req.app.io) {
+      req.app.io.emit(config.socket.events.update_message, response)
+    }
     res.json(response)
   } catch (err) {
     next(err)
