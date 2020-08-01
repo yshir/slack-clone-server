@@ -4,6 +4,7 @@ const router = express.Router()
 
 const models = require('../../../models')
 const channelRequest = require('../../../middlewares/requests/channel-request')
+const NotFoundError = require('../../../lib/errors/notfound-error')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -37,6 +38,25 @@ router.post('/', channelRequest, async (req, res, next) => {
     await channel.setUsers([req.user.id])
 
     res.json({ channel })
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/:id/join', async (req, res, next) => {
+  try {
+    const channel = await models.Channel.findOne({
+      where: {
+        id: req.params.id,
+        workspace_id: req.user.workspace.id,
+      },
+    })
+    if (!channel) {
+      return next(new NotFoundError(`Channel ${req.params.id} does not exiest`))
+    }
+
+    await channel.addUser(req.user.id)
+    res.json({ success: true })
   } catch (err) {
     next(err)
   }

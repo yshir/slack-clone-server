@@ -1,6 +1,8 @@
 const _ = require('lodash')
 const Ajv = require('ajv')
+
 const ValidationError = require('../../lib/errors/validation-error')
+const models = require('../../models')
 
 module.exports = (req, res, next) => {
   const schema = {

@@ -2,12 +2,13 @@ const request = require('supertest')
 const utils = require('../../../utils')
 const app = require('../../../../app')
 
+let channel
 let token
 
 beforeAll(async () => {
   const workspace = await utils.createWorkspace()
   const user = await utils.createUser({ workspace_id: workspace.id })
-  await utils.createChannel({ workspace_id: workspace.id })
+  channel = await utils.createChannel({ workspace_id: workspace.id })
 
   token = await utils.getToken(user)
 })
@@ -83,6 +84,45 @@ describe('POST: /v1/auth/channels', () => {
     it('returns 401', done => {
       request(app)
         .put('/v1/auth/channels')
+        .then(res => {
+          expect(res.statusCode).toBe(401)
+          done()
+        })
+    })
+  })
+})
+
+describe('PUT: /v1/auth/channels/:id/join', () => {
+  describe('valid request', () => {
+    it('associates user to channel', done => {
+      request(app)
+        .put(`/v1/auth/channels/${channel.id}/join`)
+        .set({ Authorization: `Bearer ${token}` })
+        .send({})
+        .then(res => {
+          expect(res.statusCode).toBe(200)
+          done()
+        })
+    })
+  })
+
+  describe('incorrect channel id', () => {
+    it('returns 400', done => {
+      request(app)
+        .put(`/v1/auth/channels/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/join`)
+        .set({ Authorization: `Bearer ${token}` })
+        .send({})
+        .then(res => {
+          expect(res.statusCode).toBe(404)
+          done()
+        })
+    })
+  })
+
+  describe('no token', () => {
+    it('returns 401', done => {
+      request(app)
+        .put(`/v1/auth/channels/${channel.id}/join`)
         .then(res => {
           expect(res.statusCode).toBe(401)
           done()
