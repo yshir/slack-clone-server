@@ -7,16 +7,20 @@ const channelRequest = require('../../../middlewares/requests/channel-request')
 
 router.get('/', async (req, res, next) => {
   try {
-    const workspaceChannels = await models.Channel.findAll({
+    const channels = await models.Channel.findAll({
       where: { workspace_id: req.user.workspace.id },
+      include: [{ model: models.User, as: 'users' }],
     })
-    const joinedChannelIds = req.user.channels.map(item => item.id)
 
     res.json({
-      channels: workspaceChannels.map(c => ({
-        id: c.id,
-        name: c.name,
-        is_joined: _.includes(joinedChannelIds, c.id),
+      channels: channels.map(channel => ({
+        id: channel.id,
+        name: channel.name,
+        is_joined: _.includes(
+          channel.users.map(user => user.id),
+          req.user.id,
+        ),
+        users: channel.users.map(user => _.pick(user, ['username', 'displayname', 'avatar_url'])),
       })),
     })
   } catch (err) {
