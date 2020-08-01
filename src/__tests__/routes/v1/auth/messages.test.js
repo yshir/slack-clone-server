@@ -119,7 +119,7 @@ describe('POST: /v1/auth/messages', () => {
   describe('no token', () => {
     it('returns 401', done => {
       request(app)
-        .put('/v1/auth/messages')
+        .post('/v1/auth/messages')
         .then(res => {
           expect(res.statusCode).toBe(401)
           done()

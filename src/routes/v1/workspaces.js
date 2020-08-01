@@ -4,7 +4,7 @@ const router = express.Router()
 const authHelper = require('../../helpers/auth')
 const models = require('../../models')
 const WorkspaceForm = require('../../forms/workspace-form')
-const workspaceRequest = require('../../middlewares/requests/workspace-request')
+const workspaceNewRequest = require('../../middlewares/requests/workspace-new-request')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/', workspaceRequest, async (req, res, next) => {
+router.post('/', workspaceNewRequest, async (req, res, next) => {
   try {
     const form = new WorkspaceForm(req.body)
     await form.save()
