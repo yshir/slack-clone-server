@@ -31,6 +31,7 @@ describe('GET: /v1/auth/messages', () => {
         .then(res => {
           expect(res.statusCode).toBe(200)
           expect(res.body).toHaveProperty('messages')
+          expect(res.body.messages[0]).toHaveProperty('channel_id')
           expect(res.body.messages[0]).toHaveProperty('text')
           expect(res.body.messages[0]).toHaveProperty('user')
           expect(res.body.messages[0].user).toHaveProperty('username')
@@ -81,6 +82,7 @@ describe('POST: /v1/auth/messages', () => {
           expect(res.body.message).toHaveProperty('text')
           expect(res.body.message).toHaveProperty('created_at')
           expect(res.body.message.text).toBe('TEXT')
+          expect(res.body.message.channel_id).toBe(channel.id)
           done()
         })
     })

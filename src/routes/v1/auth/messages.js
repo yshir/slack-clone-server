@@ -38,6 +38,7 @@ router.get('/', async (req, res, next) => {
 
     res.json({
       messages: messages.map(m => ({
+        channel_id: m.channel_id,
         text: m.text,
         created_at: m.created_at,
         user: {
@@ -75,14 +76,11 @@ router.post('/', messageRequest, async (req, res, next) => {
       return next(new ValidationError('channel not found'))
     }
 
-    const message = await models.Message.create({
-      channel_id: channel_id,
-      user_id: req.user.id,
-      text: text,
-    })
+    const message = await models.Message.create({ channel_id, user_id: req.user.id, text })
 
     const response = {
       message: {
+        channel_id: message.channel_id,
         text: message.text,
         created_at: message.created_at,
         user: {
