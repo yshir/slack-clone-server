@@ -5,3 +5,6 @@
 
 ## Running the test
 - `docker-compose run app npm test`
+
+## deployment
+- `master` にpushで自動デプロイ
